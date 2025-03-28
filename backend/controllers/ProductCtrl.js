@@ -10,23 +10,20 @@ class ProductCtrl {
            else {
             console.log(prods);
             res.json(prods);
-            // res.render('list-products', {
-            //     prods: prods 
-            // })
            }
         } catch (err) {
             console.log(err)
             res.status(404).json({error})
         }
     }
+
     async ProductDetail(req, res) {
         try { 
-            const product = await Product.findById(req.params.id)
+            const product = await Product.findOne({slug: req.params.slug}).exec();
             
             if (!product) res.status(404).json({error: "Item not found"}) 
             else {
-               
-               res.render('product-details',{product: product.toObject()})
+               res.json(product);
             } 
         } catch (error) {
             res.status(400).json({error})
