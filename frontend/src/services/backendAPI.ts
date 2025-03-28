@@ -1,10 +1,6 @@
 import API from "./api";
-import { Product } from "../types/product";
+import { Product } from "../types/types";
 
-// interface GetProduct {
-//     product: product[],
-//     totalProduct: number,
-// }
 
 export default class BackendAPI extends API {
     constructor() {
@@ -15,4 +11,9 @@ export default class BackendAPI extends API {
         const res = await this.get('/product');
         return res.data;
     }
+
+    public getProductBySlug = async (slug: string): Promise<Product> => {        
+        const res = await this.get(`/product/${slug}`);
+        return res.data;
+    }   
 };

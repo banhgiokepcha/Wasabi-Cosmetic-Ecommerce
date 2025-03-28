@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
-import { Product } from '../../types/product';
-import ProductDetail from "../../components/product/productCard";
+import { Product } from '../../types/types';
+import ProductCard from "../../components/product/ProductCard";
 import { backendAPI } from "../../services";
 
 export function ProductPage() {
@@ -32,10 +31,12 @@ export function ProductPage() {
         <>
         {isLoading && products ? (
             products.map((product) => (
-                <ProductDetail 
+                <ProductCard 
                     image={product.imgURL} 
                     name={product.name} 
-                    price={product.price} />
+                    price={product.price}
+                    description={product.description}
+                    slug={product.slug} />
             )) 
         ) : (
             <h1>Loading products...</h1>

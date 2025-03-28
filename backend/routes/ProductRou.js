@@ -4,7 +4,7 @@ var ProductCtrl = require('../controllers/ProductCtrl')
 
 router.get('/search', ProductCtrl.SearchProduct)
 router.post('/search', ProductCtrl.SearchProduct)
-router.get('/detail/:id', ProductCtrl.ProductDetail)
+router.get('/:slug', ProductCtrl.ProductDetail)
 router.get('/', ProductCtrl.ProductIndex) 
 router.get('/update', ProductCtrl.GetProductToUpdate)
 router.post('/update', ProductCtrl.UpdateProduct)

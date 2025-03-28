@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+//const slugify = require('slugify');
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({ 
@@ -10,6 +11,11 @@ const productSchema = new Schema({
         type: String, 
         required: true,
         trim: true,
+    },
+    slug: { 
+        type: String, 
+        required: true, 
+        unique: true
     },
     description: {
         type: String,
@@ -34,6 +40,11 @@ const productSchema = new Schema({
 
 });  
 productSchema.index({ name: 'text', description: 'text' });
+
+productSchema.pre('save', function(next) {
+    this.slug = this.name.replace(/[^a-zA-Z ]/g, "").split(' ').join('-').toLowerCase();
+    next();
+});
 const Product = mongoose.model('Product', productSchema);
 
 Product.collection.createIndex({ name: 'text', description: 'text' }, function(err, result) {
