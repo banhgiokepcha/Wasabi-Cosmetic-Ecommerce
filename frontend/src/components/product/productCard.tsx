@@ -11,7 +11,7 @@ function ProductDetail({ image, name, price}: Props) {
             <figure className="px-10 pt-10">
             <img 
                 src={image}
-                alt="Shoes"
+                alt="product"
                 className="w-50 h-50 rounded-xl" />
             </figure>
             <div className="card-body items-center text-center">
